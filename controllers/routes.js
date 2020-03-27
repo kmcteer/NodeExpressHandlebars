@@ -10,11 +10,17 @@ router.get('/', function(req,res){
     // call burger.all and pass burger data into function
     burger.all(function(burger_data){
         console.log(burger_data);
-        res.render('index');
+        res.render('index',{burger_data});
 
     })
 })
-
+// router.put needed.. this is used for clicking the button and allowing the burger to dissapear.
+router.put('/burgers/update',function(req,res){
+    burger.update(req.body.burger_id, function(result){
+        console.log(result);
+        res.redirect('/');
+    });
+});
 module.exports = router;
 
 

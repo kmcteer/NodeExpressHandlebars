@@ -7,6 +7,14 @@ var burger = {
         orm.all('burgers',function(res){
             cb(res);
         })
+    },
+    // update function needed here also
+    update: function(id,cb){
+        orm.update('burgers',id,cb);
+    },
+    // call the orm create pass in the burgers table using a call back
+    create: function(name,cb){
+        orm.create('burgers', name, cb);
     }
 }
 

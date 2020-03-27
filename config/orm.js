@@ -8,8 +8,22 @@ var connection = require('./connection');
                 if(err) throw err;
                 cb(result)
             })
+        },
+        // update table input. set devour=true makes the id equal to what were sending to orutes.js
+        update: function(tableInput, condition, cb){
+            connection.query('UPDATE '+tableInput+' SET devoured=true WHERE id='+condition+';', function(err,result){
+                if(err)throw err;
+                cb(result);
+            })
+        },
+        // used to create a connection query that will insert values into the table input. 
+        create: function(tableInput,val,cb){
+            connection.query('INSERT INTO '+tableInput+" (burger_name) VALUES ("+val+");", function(err,result){
+                if(err)throw err;
+                cb(result);
+            })
         }
     }
 // orm.create will create new data within the database
-
+module.exports = orm;
 //  orm.update will update data within the database
