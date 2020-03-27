@@ -18,7 +18,8 @@ var connection = require('./connection');
         },
         // used to create a connection query that will insert values into the table input. 
         create: function(tableInput,val,cb){
-            connection.query('INSERT INTO '+tableInput+" (burger_name) VALUES ("+val+");", function(err,result){
+            // double quotation marks ' "" ' is used for letting kysql know were using a string for value
+            connection.query('INSERT INTO '+tableInput+" (burger_name) VALUES ('"+val+"');", function(err,result){
                 if(err)throw err;
                 cb(result);
             })
